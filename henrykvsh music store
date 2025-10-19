@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for a sleeker look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        .album-card {
+            background-color: #1e1e1e;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .album-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        .price-btn {
+            background-color: #1DB954; /* Spotify-like green */
+            transition: background-color 0.2s ease;
+        }
+        .price-btn:hover {
+            background-color: #1ed760;
+        }
+        .play-btn-icon {
+            transition: transform 0.2s ease;
+        }
+        .play-btn:hover .play-btn-icon {
+            transform: scale(1.1);
+        }
+        /* Modal Styles */
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: #282828;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="text-center py-12 px-4 bg-black bg-opacity-30">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-white">The Sonic Emporium</h1>
+        <p class="mt-3 text-lg text-gray-400 max-w-2xl mx-auto">High-fidelity tracks, directly from the artist to you.</p>
+    </header>
+
+    <!-- Main Content: Music Grid -->
+    <main id="music-grid" class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+            <!-- Album Card 1 -->
+            <div class="album-card rounded-lg overflow-hidden shadow-lg flex flex-col">
+                <img src="https://placehold.co/500x500/1DB954/FFFFFF?text=Echoes" alt="Album Art for Echoes in Rain" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/500x500/333/FFF?text=Art+Error';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-white">Echoes in Rain</h3>
+                    <p class="text-sm text-gray-400 mb-2">By Alex Kemp</p>
+                    <p class="text-sm text-gray-300 italic flex-grow">"A melancholic journey through soundscapes. Truly a masterpiece of modern electronic music."</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <button class="play-btn p-2 rounded-full text-white">
+                             <svg class="w-6 h-6 play-btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.018 15.132A1.25 1.25 0 006 14.15V5.85a1.25 1.25 0 00-1.982-1.082L.5 8.918a1.25 1.25 0 000 2.164l3.518 4.05z"></path>
+                            </svg>
+                        </button>
+                        <button class="price-btn text-white font-semibold py-2 px-4 rounded-full text-sm" data-album="Echoes in Rain">
+                            $9.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Album Card 2 -->
+            <div class="album-card rounded-lg overflow-hidden shadow-lg flex flex-col">
+                <img src="https://placehold.co/500x500/FF6347/FFFFFF?text=Neon" alt="Album Art for Neon Dreams" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/500x500/333/FFF?text=Art+Error';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-white">Neon Dreams</h3>
+                    <p class="text-sm text-gray-400 mb-2">By Synthwave Collective</p>
+                    <p class="text-sm text-gray-300 italic flex-grow">"Pure 80s nostalgia. Every track is a banger that will transport you back in time."</p>
+                    <div class="mt-4 flex justify-between items-center">
+                       <button class="play-btn p-2 rounded-full text-white">
+                             <svg class="w-6 h-6 play-btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.018 15.132A1.25 1.25 0 006 14.15V5.85a1.25 1.25 0 00-1.982-1.082L.5 8.918a1.25 1.25 0 000 2.164l3.518 4.05z"></path>
+                            </svg>
+                        </button>
+                        <button class="price-btn text-white font-semibold py-2 px-4 rounded-full text-sm" data-album="Neon Dreams">
+                            $12.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Album Card 3 -->
+            <div class="album-card rounded-lg overflow-hidden shadow-lg flex flex-col">
+                <img src="https://placehold.co/500x500/4682B4/FFFFFF?text=Depths" alt="Album Art for Depths" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/500x500/333/FFF?text=Art+Error';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-white">The Silent Depths</h3>
+                    <p class="text-sm text-gray-400 mb-2">By Maya Cruz</p>
+                    <p class="text-sm text-gray-300 italic flex-grow">"An ambient masterpiece. Perfect for late-night coding sessions or quiet reflection."</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <button class="play-btn p-2 rounded-full text-white">
+                             <svg class="w-6 h-6 play-btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.018 15.132A1.25 1.25 0 006 14.15V5.85a1.25 1.25 0 00-1.982-1.082L.5 8.918a1.25 1.25 0 000 2.164l3.518 4.05z"></path>
+                            </svg>
+                        </button>
+                        <button class="price-btn text-white font-semibold py-2 px-4 rounded-full text-sm" data-album="The Silent Depths">
+                            $7.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Album Card 4 -->
+            <div class="album-card rounded-lg overflow-hidden shadow-lg flex flex-col">
+                <img src="https://placehold.co/500x500/DAA520/FFFFFF?text=Uprising" alt="Album Art for Uprising" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/500x500/333/FFF?text=Art+Error';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-white">Uprising</h3>
+                    <p class="text-sm text-gray-400 mb-2">By The Resistance</p>
+                    <p class="text-sm text-gray-300 italic flex-grow">"Raw, energetic, and unapologetic. This rock album is a call to action."</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <button class="play-btn p-2 rounded-full text-white">
+                             <svg class="w-6 h-6 play-btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.018 15.132A1.25 1.25 0 006 14.15V5.85a1.25 1.25 0 00-1.982-1.082L.5 8.918a1.25 1.25 0 000 2.164l3.518 4.05z"></path>
+                            </svg>
+                        </button>
+                        <button class="price-btn text-white font-semibold py-2 px-4 rounded-full text-sm" data-album="Uprising">
+                            $11.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+             <!-- Album Card 5 -->
+            <div class="album-card rounded-lg overflow-hidden shadow-lg flex flex-col">
+                <img src="https://placehold.co/500x500/8A2BE2/FFFFFF?text=Cosmic" alt="Album Art for Cosmic Lullaby" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/500x500/333/FFF?text=Art+Error';">
+                <div class="p-5 flex flex-col flex-grow">
+                    <h3 class="text-lg font-bold text-white">Cosmic Lullaby</h3>
+                    <p class="text-sm text-gray-400 mb-2">By Starlight Duo</p>
+                    <p class="text-sm text-gray-300 italic flex-grow">"A soothing collection of acoustic melodies that feel like a warm hug for your soul."</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <button class="play-btn p-2 rounded-full text-white">
+                             <svg class="w-6 h-6 play-btn-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4.018 15.132A1.25 1.25 0 006 14.15V5.85a1.25 1.25 0 00-1.982-1.082L.5 8.918a1.25 1.25 0 000 2.164l3.518 4.05z"></path>
+                            </svg>
+                        </button>
+                        <button class="price-btn text-white font-semibold py-2 px-4 rounded-full text-sm" data-album="Cosmic Lullaby">
+                            $8.99
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center py-8 mt-8 border-t border-gray-800">
+        <p class="text-gray-500">&copy; 2025 Your Artist Name. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Purchase Modal -->
+    <div id="purchaseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
+        <div id="modalContent" class="modal-content text-white rounded-lg shadow-xl p-8 max-w-sm w-full text-center">
+            <h2 class="text-2xl font-bold mb-4">Thank You!</h2>
+            <p id="modal-album-name" class="mb-6 text-gray-300"></p>
+            <p class="mb-6 text-gray-300">Full purchase functionality is coming soon. Thanks for your support!</p>
+            <button id="closeModal" class="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-full">
+                Close
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceButtons = document.querySelectorAll('.price-btn');
+            const modal = document.getElementById('purchaseModal');
+            const modalAlbumName = document.getElementById('modal-album-name');
+            const closeModalBtn = document.getElementById('closeModal');
+
+            priceButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const albumName = button.getAttribute('data-album');
+                    modalAlbumName.textContent = `You're about to purchase "${albumName}".`;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            const closeModal = () => {
+                modal.classList.add('hidden');
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            // Also close modal if user clicks on the backdrop
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
